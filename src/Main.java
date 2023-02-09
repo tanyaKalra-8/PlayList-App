@@ -38,9 +38,13 @@ public class Main {
         System.out.println(itr.next());
 
         Scanner sc = new Scanner(System.in);
+        printMenu();
+//        if(itr.hasPrevious()){
+//            itr.previous();
+//        }
 
         while(true){
-            System.out.println("Enter your choice");
+            System.out.println("Enter your choice or Enter 6 to open Menu");
             int choice = sc.nextInt();
 
             switch (choice){
@@ -62,11 +66,24 @@ public class Main {
                     break;
 
                 case 3:
-
+                    if(itr.hasPrevious()){
+                        System.out.println("Now Playing: ");
+                        System.out.println(itr.previous());
+                        itr.next();
+                    }
+                    else{
+                        System.out.println("No song is playing currently");
+                    }
                     break;
 
                 case 4:
-
+                    if(itr.hasPrevious()){
+                        delete(itr.previous(), myPlaylist);
+                        System.out.println("Current song is removed from your playList");
+                    }
+                    else{
+                        System.out.println("No song is playing currently");
+                    }
                     break;
 
                 case 5:
@@ -82,6 +99,13 @@ public class Main {
             }
         }
     }
+
+    private static void delete(Song song, List<Song> myPlaylist) {
+        myPlaylist.remove(song);
+        return;
+    }
+
+
     static void printAllSongs(List<Song> playlist){
         for(Song s: playlist){
             System.out.println(s);
