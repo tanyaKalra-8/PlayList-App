@@ -39,6 +39,7 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         printMenu();
+        boolean isNext = true;
 //        if(itr.hasPrevious()){
 //            itr.previous();
 //        }
@@ -50,17 +51,27 @@ public class Main {
             switch (choice){
 
                 case 1:
+                    if(!isNext){
+                        itr.next();
+                        isNext=true;
+                    }
                     if(itr.hasNext()){
                         System.out.println("Now Playing");
                         System.out.println(itr.next());
+                        isNext=true;
                     }
                     else System.out.println("You have reached the end of the list");
                     break;
 
                 case 2:
+                    if(isNext){
+                        itr.previous();
+                        isNext=false;
+                    }
                     if(itr.hasPrevious()){
                         System.out.println("Now Playing");
                         System.out.println(itr.previous());
+                        isNext=false;
                     }
                     else System.out.println("You are on the first song of the list");
                     break;
